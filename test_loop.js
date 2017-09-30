@@ -1,4 +1,8 @@
-
+/*
+Demo of Javascript Canvas + Timmer  
+Programmer:  Thitipong.Samranvanich  
+2560-10-01  01:37 AM Thailand
+*/
 var cv = null ; 
 var cvprop = null;
 var ctx = null ; 
