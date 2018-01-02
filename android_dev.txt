@@ -31,3 +31,28 @@ In Computer : run   adb.exe devices for list device connect to this PC
 
 >adb tcpip 5555
 >adb list -l      //  ( L letter not number 1 )
+
+>adb connect 
+
+> adb push local remote   // copy to device 
+> adb [-a] remote local    // copy to pc  , -a for reserve file stamp and mode   
+
+  
+> adb [-l|-r|-t]  install [file.apk]  
+> adb [=k] uninstaall [file.apk]
+
+> adb state 
+> adb get-devpath 
+> adb get-serialno
+
+
+> adb shell	       // to get linux like shell  
+> adb shell -e 
+
+
+> adb shell pm uninstall com.example.MyApp       // Example of Package manager command  
+> adb  shell pm list package [options] filter    // List Package 
+
+> adb shell pm list users  // List User ( Name and Surname) 
+> adb shell pm list features  
+> 
