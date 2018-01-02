@@ -22,4 +22,5 @@ To Enable adb debugging on your device
  (English) ==> Follow Instruction 
  (Thai / Tested With Samsung Galaxy J7 ) ==>  การตั้งค่า > เกี่ยวกับอุปกรณ์ > ข้อมูลซอฟท์แวร์ > หมายเลขรุ่น (แตะ 7 ครั้ง )  
  
- 
+For Test with Real Hardware Device  ( not Emulator ) Read This Document .  
+https://developer.android.com/studio/run/device.html
