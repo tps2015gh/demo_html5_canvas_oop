@@ -1,0 +1,19 @@
+
+
+download Android Studio  
+https://developer.android.com/studio/index.html 
+FileName Like =>  android-studio-ide-171.4443003-windows.exe 
+
+Default Path is => 
+C:\Program Files\Android\Android Studio>
+
+after install program will ask for download SDK 
+default path of SDK is  
+C:\Users\[use-name]\AppData\Local\Android\Sdk
+
+File adb.exe for debug is at location : 
+C:\Users\[user-name]\AppData\Local\Android\sdk>dir adb.exe /s /b
+C:\Users\[user-name]\Local\Android\sdk\platform-tools\adb.exe
+
+How to use adb.exe 
+https://developer.android.com/studio/command-line/adb.html#wireless
