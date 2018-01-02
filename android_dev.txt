@@ -24,3 +24,10 @@ To Enable adb debugging on your device
  
 For Test with Real Hardware Device  ( not Emulator ) Read This Document .  
 https://developer.android.com/studio/run/device.html
+Enable USB Debuging 
+(Thai) ==> การตั้งค่า > ทางเลือกผู้พัฒนา > แก้ไขข้อบกพร่อง USB  
+    คลิก เช็คบ้อค อนุญาติ > กดปุ่มตกลง  
+In Computer : run   adb.exe devices for list device connect to this PC 
+
+>adb tcpip 5555
+>adb list -l      //  ( L letter not number 1 )
