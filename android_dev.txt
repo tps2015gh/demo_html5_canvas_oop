@@ -17,3 +17,9 @@ C:\Users\[user-name]\Local\Android\sdk\platform-tools\adb.exe
 
 How to use adb.exe 
 https://developer.android.com/studio/command-line/adb.html#wireless
+
+To Enable adb debugging on your device
+ (English) ==> Follow Instruction 
+ (Thai / Tested With Samsung Galaxy J7 ) ==>  การตั้งค่า > เกี่ยวกับอุปกรณ์ > ข้อมูลซอฟท์แวร์ > หมายเลขรุ่น (แตะ 7 ครั้ง )  
+ 
+ 
