@@ -14,8 +14,8 @@ This repository demonstrates an HTML5 Canvas animation using object-oriented pro
 Output
 ![screen shot 2](https://github.com/tps2015gh/demo_html5_canvas_oop/blob/master/screen2.JPG)
 
-Output (Live Browser Snapshot - Updated, captured after 10s delay)
-![Browser Snapshot](browser_snapshot_3.png)
+Output (Live Browser Snapshot - Updated with Pause/Play and Drag-and-Drop, captured after 10s delay)
+![Browser Snapshot](browser_snapshot_4.png)
 
 Environment in Development (using Sublime2 Editor)
 ![Screen Shot](https://github.com/tps2015gh/demo_html5_canvas_oop/blob/master/test_loop_screen.jpg)
