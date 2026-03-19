@@ -38,6 +38,7 @@ People.prototype.move = function(){
 
 	gdi.x = nextX;
 	gdi.y = nextY;
+} // <-- Missing closing brace added here
 People.prototype.draw1 = function(){
 	
 	var gdi = this.gdi ; 
