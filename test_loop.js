@@ -17,7 +17,27 @@ function People(id){
 	var hi = 24 , wi = 100 ; 
 	this.gdi  = { x : 200 , y : 100 + (id * hi) ,  hi: hi ,wi:wi, fillcolor :"yellow"};
 	aPeople.push(this) ;
+	this.dx = People.getRandomDiff_Bidirection();
+	this.dy = People.getRandomDiff_Bidirection();
 }
+People.prototype.move = function(){
+	var gdi = this.gdi;
+	var nextX = gdi.x + this.dx;
+	var nextY = gdi.y + this.dy;
+
+	// Check x-axis boundaries
+	if (nextX < 0 || (nextX + gdi.wi) > cvprop.wi) {
+		this.dx *= -1; // Reverse direction
+		nextX = gdi.x + this.dx; // Re-calculate nextX to stay within bounds
+	}
+	// Check y-axis boundaries
+	if (nextY < 0 || (nextY + gdi.hi) > cvprop.hi) {
+		this.dy *= -1; // Reverse direction
+		nextY = gdi.y + this.dy; // Re-calculate nextY to stay within bounds
+	}
+
+	gdi.x = nextX;
+	gdi.y = nextY;
 People.prototype.draw1 = function(){
 	
 	var gdi = this.gdi ; 
@@ -56,7 +76,7 @@ People.prototype.check_inrect= function(pos){
 People.draw1all = function(){
 	ctx.clearRect(0, 0, cvprop.wi, cvprop.hi);	
 	
-		 for (i = 0 ; i <  aPeople.length -1 ; i ++){
+		 for (var i = 0 ; i <  aPeople.length -1 ; i ++){
 		 	var pc1 = aPeople[i].center(); 
 		 	var pc2 = aPeople[i+1].center();
 		 	ctx.beginPath();
@@ -69,7 +89,7 @@ People.draw1all = function(){
 		 }	
  	
 
-	for (i = 0 ; i <  aPeople.length ; i ++){
+	for (var i = 0 ; i <  aPeople.length ; i ++){
 		aPeople[i].draw1();
 	}
 }
@@ -97,8 +117,7 @@ People.loop = function(){
 	//ctx.clear(false);
 	//aPeople[4].gdi.x +=10 ;
 	var p = People.randomItem();
-	p.gdi.x += People.getRandomDiff_Bidirection();
-	p.gdi.y += People.getRandomDiff_Bidirection();
+	p.move();
 
 	//aPeople[4].draw1();
 	People.draw1all(); 
@@ -109,7 +128,7 @@ function timerun (){
 	People.loop();
 	
 	ctx.fillText( "TimeRun="+ timerun_count ,400,400 );
-	setTimeout(timerun, 20);
+	requestAnimationFrame(timerun);
 }
 
 
