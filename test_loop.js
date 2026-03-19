@@ -152,7 +152,7 @@ var rect = cv.getBoundingClientRect();
 	};
 }
 
-function onload(){
+function initializeCanvas(){
 
 	cv =  document.getElementById("canvas1");
 	register_listener(cv);
