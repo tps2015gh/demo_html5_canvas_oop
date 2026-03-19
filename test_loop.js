@@ -8,6 +8,19 @@ var cvprop = null;
 var ctx = null ; 
 var aPeople = [] ;
 var timerun_count =  0;
+var isPlaying = true; // Added for pause/play
+
+function togglePlayPause() {
+    isPlaying = !isPlaying;
+    var btn = document.getElementById("playPauseBtn");
+    if (isPlaying) {
+        btn.innerText = "Pause";
+        requestAnimationFrame(timerun); // Restart animation if playing
+    } else {
+        btn.innerText = "Play";
+    }
+}
+
 function draw1(){
 	ctx.fillRect(10,10,100,10); 	
 }
@@ -129,21 +142,56 @@ function timerun (){
 	People.loop();
 	
 	ctx.fillText( "TimeRun="+ timerun_count ,400,400 );
-	requestAnimationFrame(timerun);
+	if (isPlaying) { // Check if animation should continue
+		requestAnimationFrame(timerun);
+	}
 }
 
 
 var register_listener = function(cv){
-	cv.addEventListener('mousemove', function(evt) {
+    var isDragging = false;
+    var draggedObject = null;
+    var offsetX, offsetY;
+
+	cv.addEventListener('mousedown', function(evt) {
         var mousePos = getMousePos(cv, evt);
-        //console.log("mousePos="+ mousePos.x + "," + mousePos.y);
-        var inpos = "idx: ";
-        for(var i = 0 ; i< aPeople.length ; i++){
-        	var is_inrect = aPeople[i].check_inrect(mousePos);
-        	if(is_inrect) { inpos += " " + i ; }  
+        for (var i = 0; i < aPeople.length; i++) {
+            if (aPeople[i].check_inrect(mousePos)) {
+                isDragging = true;
+                draggedObject = aPeople[i];
+                offsetX = mousePos.x - draggedObject.gdi.x;
+                offsetY = mousePos.y - draggedObject.gdi.y;
+                break;
+            }
         }
-        console.log( inpos );
-      }, false);	
+    });
+
+    cv.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(cv, evt);
+        if (isDragging && draggedObject) {
+            draggedObject.gdi.x = mousePos.x - offsetX;
+            draggedObject.gdi.y = mousePos.y - offsetY;
+            // Redraw the canvas to show the object moving
+            People.draw1all();
+        } else {
+            var inpos = "idx: ";
+            var found = false;
+            for(var i = 0 ; i< aPeople.length ; i++){
+                var is_inrect = aPeople[i].check_inrect(mousePos);
+                if(is_inrect) { 
+                    inpos += " " + i ;
+                    found = true;
+                }
+            }
+            if(found) console.log( inpos );
+        }
+    });
+
+    cv.addEventListener('mouseup', function(evt) {
+        isDragging = false;
+        draggedObject = null;
+    });
+
 }
 function getMousePos(cv, evt) {
 var rect = cv.getBoundingClientRect();
@@ -163,5 +211,7 @@ function initializeCanvas(){
 	for (i = 0 ; i <10 ; i ++){
 		new People(i);
 	}
+	// Add event listener for the Play/Pause button
+	document.getElementById("playPauseBtn").addEventListener("click", togglePlayPause);
 	setTimeout(timerun, 1000);
 }
